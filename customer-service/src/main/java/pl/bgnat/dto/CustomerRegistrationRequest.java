@@ -1,4 +1,4 @@
-package pl.bgnat.customer.dto;
+package pl.bgnat.dto;
 
 import lombok.Builder;
 

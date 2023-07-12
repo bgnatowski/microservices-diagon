@@ -1,4 +1,4 @@
-package pl.bgnat.customer.model;
+package pl.bgnat.customer;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,12 +12,17 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table
+@Entity(name = "Customer")
+@Table(name = "customer")
 public class Customer {
 	@Id
-	@SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
+	@SequenceGenerator(
+			name = "customer_id_sequence",
+			sequenceName = "customer_id_sequence",
+			allocationSize = 1)
+	@GeneratedValue(
+			strategy = GenerationType.SEQUENCE,
+			generator = "customer_id_sequence")
 	private Long id;
 	private String firstName;
 	private String lastName;
