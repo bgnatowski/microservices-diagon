@@ -9,5 +9,5 @@ public class CustomerConfiguration {
 	@Bean
 	public RestTemplate restTemplate(){
 		return new RestTemplate();
-	}
+	} 
 }
