@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   postgres-customer:
     container_name: postgres-customer
@@ -23,12 +24,27 @@ services:
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
-       - postgres:/data/postgres
-       - ./init_fraud.sql:/docker-entrypoint-initdb.d/init_fraud.sql
+      - postgres:/data/postgres
+      - ./init_fraud.sql:/docker-entrypoint-initdb.d/init_fraud.sql
     ports:
-       - "5433:5432"
+      - "5433:5432"
     networks:
-       - postgres
+      - postgres
+    restart: unless-stopped
+
+  mongo-product:
+    container_name: mongo-product
+    image: mongo:6.0.7
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=bgnat
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=product
+    volumes:
+      - mongodb:/data
+    ports:
+      - "27017:27017"
+    networks:
+      - mongodb
     restart: unless-stopped
 
   pgadmin:
@@ -49,7 +65,10 @@ services:
 networks:
   postgres:
     driver: bridge
+  mongodb:
+    driver: bridge
 
 volumes:
   postgres:
+  mongodb: {}
   pgadmin:
