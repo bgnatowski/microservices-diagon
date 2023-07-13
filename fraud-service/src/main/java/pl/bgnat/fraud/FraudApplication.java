@@ -1,4 +1,4 @@
-package pl.bgnat;
+package pl.bgnat.fraud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
