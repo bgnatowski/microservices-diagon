@@ -1,13 +1,11 @@
-package pl.bgnat.customer;
+package pl.bgnat.customer.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.bgnat.customer.CustomerRepository;
-import pl.bgnat.dto.CustomerRegistrationRequest;
-import pl.bgnat.dto.FraudCheckResponse;
-import pl.bgnat.customer.Customer;
+import pl.bgnat.customer.dto.CustomerRegistrationRequest;
+import pl.bgnat.customer.dto.FraudCheckResponse;
 
 @Service
 @RequiredArgsConstructor

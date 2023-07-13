@@ -1,4 +1,4 @@
-package pl.bgnat.customer;
+package pl.bgnat.customer.domain;
 
 
 import lombok.RequiredArgsConstructor;
@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.bgnat.dto.CustomerRegistrationRequest;
+import pl.bgnat.customer.dto.CustomerRegistrationRequest;
 
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/customers")
-public class CustomerController{
+@RequestMapping("api/v1/customer")
+class CustomerController{
 	private final CustomerService customerService;
 
 	@PostMapping("/add")
-	public void registerCustomer(@RequestBody CustomerRegistrationRequest customerRegistrationRequest){
+	void registerCustomer(@RequestBody CustomerRegistrationRequest customerRegistrationRequest){
 		log.info("new customer registration {}", customerRegistrationRequest);
 		customerService.registerCustomer(customerRegistrationRequest);
 	}

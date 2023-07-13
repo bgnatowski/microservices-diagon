@@ -1,4 +1,4 @@
-package pl.bgnat.customer;
+package pl.bgnat.customer.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

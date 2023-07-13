@@ -1,4 +1,4 @@
-package pl.bgnat.config;
+package pl.bgnat.customer.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,5 +9,5 @@ public class CustomerConfiguration {
 	@Bean
 	public RestTemplate restTemplate(){
 		return new RestTemplate();
-	} 
+	}
 }
