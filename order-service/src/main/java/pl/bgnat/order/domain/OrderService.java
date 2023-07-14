@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class OrderService {
 	private final OrderRepository orderRepository;
 	private final OrderLineItemsMapper orderLineItemsMapper;
-	private final WebClient webClient;
+	private final WebClient.Builder webClientBuilder;
 
 	@Value("${microservice.inventory.url.get}")
 	private String inventoryGetUrl;
@@ -40,7 +40,7 @@ public class OrderService {
 				.collect(Collectors.toList());
 
 		// todo Call Inventory Service and place order if product is in stock
-		InventoryDto[] inventoryResponseArray = webClient.get()
+		InventoryDto[] inventoryResponseArray = webClientBuilder.build().get()
 				.uri(inventoryGetUrl,
 						uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
 				.retrieve()

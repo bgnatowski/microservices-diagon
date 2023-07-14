@@ -20,7 +20,7 @@ spring:
 microservice:
   inventory:
     url:
-      get: http://localhost:8086/api/v1/inventory
+      get: http://inventory-service/api/v1/inventory
 
 eureka:
   client:
