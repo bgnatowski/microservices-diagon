@@ -9,7 +9,7 @@ services:
       PGDATA: /data/postgres
     volumes:
       - postgres-customer-volume:/data/postgres
-      - ./init_customer.sql:/docker-entrypoint-initdb.d/init_customer.sql
+      - ./db_inits/init_customer.sql:/docker-entrypoint-initdb.d/init_customer.sql
     ports:
       - "5432:5432"
     networks:
@@ -25,7 +25,7 @@ services:
       PGDATA: /data/postgres
     volumes:
       - postgres-fraud-volume:/data/postgres
-      - ./init_fraud.sql:/docker-entrypoint-initdb.d/init_fraud.sql
+      - ./db_inits/init_fraud.sql:/docker-entrypoint-initdb.d/init_fraud.sql
     ports:
       - "5433:5432"
     networks:
@@ -41,7 +41,7 @@ services:
       PGDATA: /data/postgres
     volumes:
       - postgres-order-volume:/data/postgres
-      - ./init_orders.sql:/docker-entrypoint-initdb.d/init_orders.sql
+      - ./db_inits/init_orders.sql:/docker-entrypoint-initdb.d/init_orders.sql
     ports:
        - "5435:5432"
     networks:
@@ -57,7 +57,7 @@ services:
       PGDATA: /data/postgres
     volumes:
       - postgres-inventory-volume:/data/postgres
-      - ./init_inventory.sql:/docker-entrypoint-initdb.d/init_inventory.sql
+      - ./db_inits/init_inventory.sql:/docker-entrypoint-initdb.d/init_inventory.sql
     ports:
       - "5436:5432"
     networks:
