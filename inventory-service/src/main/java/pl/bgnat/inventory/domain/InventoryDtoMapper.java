@@ -1,13 +1,13 @@
 package pl.bgnat.inventory.domain;
 
-import pl.bgnat.inventory.dto.InventoryResponseDto;
+import pl.bgnat.inventory.dto.InventoryDto;
 
 import java.util.function.Function;
 
-public class InventoryDtoMapper implements Function<Inventory, InventoryResponseDto> {
+public class InventoryDtoMapper implements Function<Inventory, InventoryDto> {
 	@Override
-	public InventoryResponseDto apply(Inventory inventory) {
-		return InventoryResponseDto.builder()
+	public InventoryDto apply(Inventory inventory) {
+		return InventoryDto.builder()
 				.skuCode(inventory.getSkuCode())
 				.isInStock(inventory.getQuantity()>0)
 				.build();
