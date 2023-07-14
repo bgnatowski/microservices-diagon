@@ -17,6 +17,7 @@
     <module>product-service</module>
     <module>order-service</module>
     <module>inventory-service</module>
+    <module>discovery-server</module>
   </modules>
 
   <properties>
@@ -26,6 +27,7 @@
     <mvn.compiler.target>17</mvn.compiler.target>
     <spring.boot.maven.plugin.version>3.1.0</spring.boot.maven.plugin.version>
     <spring.boot.dependencies.version>3.1.0</spring.boot.dependencies.version>
+    <spring-cloud.version>2022.0.3</spring-cloud.version>
     <testcontainers.bom.version>1.18.3</testcontainers.bom.version>
   </properties>
 
@@ -49,6 +51,13 @@
         <groupId>org.testcontainers</groupId>
         <artifactId>testcontainers-bom</artifactId>
         <version>${testcontainers.bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

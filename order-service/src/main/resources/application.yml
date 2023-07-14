@@ -21,3 +21,8 @@ microservice:
   inventory:
     url:
       get: http://localhost:8086/api/v1/inventory
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
