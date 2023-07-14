@@ -16,3 +16,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+
+microservice:
+  fraud:
+    url: http://localhost:8083/api/v1/fraud-check/{cusomerId}

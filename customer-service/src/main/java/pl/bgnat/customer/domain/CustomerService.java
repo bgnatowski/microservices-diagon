@@ -2,6 +2,7 @@ package pl.bgnat.customer.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.bgnat.customer.dto.CustomerRegistrationRequest;
@@ -13,7 +14,8 @@ public class CustomerService {
 	@Qualifier("jpa")
 	private final CustomerRepository customerRepository;
 	private final RestTemplate restTemplate;
-
+	@Value("${microservice.fraud.url}")
+	private String fraudURL;
 	public void registerCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
 		Customer customer = Customer.builder()
 				.firstName(customerRegistrationRequest.firstName())
@@ -29,7 +31,7 @@ public class CustomerService {
 		customerRepository.saveAndFlush(customer);
 		// todo check if fraudster
 		FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-				"http://localhost:8081/api/v1/fraud-check/{cusomerId}",
+				fraudURL,
 				FraudCheckResponse.class,
 				customer.getId()
 		);
