@@ -1,10 +1,6 @@
 #server:
 #  port: 8082
 
-spring:
-  application:
-    name: api-gateway
-
 eureka:
   client:
     serviceUrl:
@@ -15,4 +11,25 @@ logging:
     root: INFO
     org.springframework.cloud.gateway: TRACE
     org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # Product Service Route
+        - id: product-service-get
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/product
+        - id: product-service-post-add
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/product/add
+        # Order Service Route
+        - id: order-service-post
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/order/add
 
