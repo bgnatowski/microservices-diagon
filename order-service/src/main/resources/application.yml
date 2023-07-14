@@ -16,3 +16,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+
+microservice:
+  inventory:
+    url:
+      get: http://localhost:8086/api/v1/inventory
