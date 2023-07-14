@@ -8,12 +8,12 @@ services:
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - postgres-customer-volume:/data/postgres
       - ./init_customer.sql:/docker-entrypoint-initdb.d/init_customer.sql
     ports:
       - "5432:5432"
     networks:
-      - postgres
+      - postgres-customer-network
     restart: unless-stopped
 
   postgres-fraud:
@@ -24,12 +24,44 @@ services:
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - postgres-fraud-volume:/data/postgres
       - ./init_fraud.sql:/docker-entrypoint-initdb.d/init_fraud.sql
     ports:
       - "5433:5432"
     networks:
-      - postgres
+      - postgres-fraud-network
+    restart: unless-stopped
+
+  postgres-order:
+    container_name: postgres-order
+    image: postgres:14.7
+    environment:
+      POSTGRES_USER: bgnat
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres-order-volume:/data/postgres
+      - ./init_orders.sql:/docker-entrypoint-initdb.d/init_orders.sql
+    ports:
+       - "5435:5432"
+    networks:
+      - postgres-order-network
+    restart: unless-stopped
+
+  postgres-inventory:
+    container_name: postgres-inventory
+    image: postgres:14.7
+    environment:
+      POSTGRES_USER: bgnat
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres-inventory-volume:/data/postgres
+      - ./init_inventory.sql:/docker-entrypoint-initdb.d/init_inventory.sql
+    ports:
+      - "5436:5432"
+    networks:
+      - postgres-inventory-network
     restart: unless-stopped
 
   mongo-product:
@@ -59,16 +91,27 @@ services:
     ports:
       - "5050:80"
     networks:
-      - postgres
+      - postgres-fraud-network
+      - postgres-customer-network
+      - postgres-order-network
     restart: unless-stopped
 
 networks:
-  postgres:
+  postgres-customer-network:
     driver: bridge
+  postgres-fraud-network:
+      driver: bridge
+  postgres-order-network:
+      driver: bridge
+  postgres-inventory-network:
+        driver: bridge
   mongodb:
     driver: bridge
 
 volumes:
-  postgres:
+  postgres-customer-volume:
+  postgres-fraud-volume:
+  postgres-order-volume:
+  postgres-inventory-volume:
   mongodb: {}
   pgadmin:
