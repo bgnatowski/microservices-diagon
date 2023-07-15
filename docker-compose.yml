@@ -96,6 +96,18 @@ services:
       - postgres-order-network
     restart: unless-stopped
 
+  keycloak-server:
+    container_name: auth-keycloak
+    image: quay.io/keycloak/keycloak:22.0.0
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "8181:8080"
+    command:
+      - start-dev
+    restart: unless-stopped
+
 networks:
   postgres-customer-network:
     driver: bridge
@@ -106,6 +118,8 @@ networks:
   postgres-inventory-network:
         driver: bridge
   mongodb:
+    driver: bridge
+  keycloak-network:
     driver: bridge
 
 volumes:
