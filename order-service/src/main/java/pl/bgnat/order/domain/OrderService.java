@@ -24,7 +24,7 @@ public class OrderService {
 
 	@Value("${microservice.inventory.url.get}")
 	private String inventoryGetUrl;
-	public void placeOrder(OrderRequest orderRequest) {
+	public String placeOrder(OrderRequest orderRequest) {
 		List<OrderLineItems> orderLineItems = orderRequest.orderLineItemsDtoList()
 				.stream()
 				.map(orderLineItemsMapper)
@@ -56,5 +56,6 @@ public class OrderService {
 		if(!allProductsInStock)
 			throw new OutOfStockException("Some products are out of stock! SkuCodes out of stock: " + productsScuCodeNotInStock);
 		orderRepository.save(order);
+		return "Order Placed Successfully";
 	}
 }
