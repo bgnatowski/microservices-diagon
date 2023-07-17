@@ -108,18 +108,28 @@ services:
       - start-dev
     restart: unless-stopped
 
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - spring
+
 networks:
   postgres-customer-network:
     driver: bridge
   postgres-fraud-network:
-      driver: bridge
+    driver: bridge
   postgres-order-network:
-      driver: bridge
+    driver: bridge
   postgres-inventory-network:
-        driver: bridge
+    driver: bridge
   mongodb:
     driver: bridge
   keycloak-network:
+    driver: bridge
+  spring:
     driver: bridge
 
 volumes:
