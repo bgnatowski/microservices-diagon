@@ -5,7 +5,6 @@ import io.github.resilience4j.retry.annotation.Retry;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.actuate.endpoint.web.annotation.WebEndpoint;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bgnat.order.dto.OrderRequest;
@@ -22,6 +21,7 @@ import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE;
 @Slf4j
 public class OrderController {
 	private final OrderService orderService;
+
 
 	@PostMapping("/add")
 	@ResponseStatus(CREATED)
