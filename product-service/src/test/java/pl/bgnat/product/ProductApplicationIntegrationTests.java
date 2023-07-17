@@ -38,6 +38,10 @@ public class ProductApplicationIntegrationTests {
 	@Container
 	static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:6.0.7");
 
+	static {
+		mongoDBContainer.start();
+	}
+
 	@BeforeEach
 	void setUp() {
 		productRepository.deleteAll();

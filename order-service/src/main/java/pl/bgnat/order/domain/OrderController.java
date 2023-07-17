@@ -4,6 +4,7 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.actuate.endpoint.web.annotation.WebEndpoint;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE;
 @RestController
 @RequestMapping("api/v1/order")
 @RequiredArgsConstructor
+@Slf4j
 public class OrderController {
 	private final OrderService orderService;
 
@@ -27,6 +29,7 @@ public class OrderController {
 	@Retry(name = "inventory")
 	@TimeLimiter(name = "inventory")
 	public CompletableFuture<ResponseEntity<String>> placeOrder(@RequestBody OrderRequest orderRequest) {
+		log.info("Placing Order");
 		return CompletableFuture.supplyAsync(() -> {
 			String orderStatus = orderService.placeOrder(orderRequest);
 			return ResponseEntity
@@ -36,6 +39,7 @@ public class OrderController {
 	}
 
 	public CompletableFuture<ResponseEntity<String>> fallbackMethod(OrderRequest orderRequest, OutOfStockException exception) {
+		log.info("Cannot Place Order Executing Fallback logic");
 		return CompletableFuture.supplyAsync(() ->
 				ResponseEntity
 						.status(SERVICE_UNAVAILABLE)
