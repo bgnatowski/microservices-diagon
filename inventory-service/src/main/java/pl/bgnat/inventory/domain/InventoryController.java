@@ -11,14 +11,14 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/inventory")
 @RequiredArgsConstructor
-class InventoryController {
+public class InventoryController {
 	private final InventoryService inventoryService;
 
 
 	//http://localhost:8086/api/v1/inventory/skuCode=iphone-13&skuCode=iphone13-red
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	ResponseEntity<List<InventoryDto>> isInStock(@RequestParam("skuCode") List<String> skuCodes){
+	public ResponseEntity<List<InventoryDto>> isInStock(@RequestParam("skuCode") List<String> skuCodes){
 		return ResponseEntity.ok(inventoryService.isInStock(skuCodes));
 	}
 }

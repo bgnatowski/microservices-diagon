@@ -21,7 +21,7 @@ public class InventoryService {
 	@SneakyThrows
 	public List<InventoryDto> isInStock(List<String> skuCode) {
 //		log.info("Wait Started"); //tests
-//		Thread.sleep(40000);
+//		Thread.sleep(10000);
 //		log.info("Wait Ended");
 		return inventoryRepository.findBySkuCodeIn(skuCode)
 				.stream()
