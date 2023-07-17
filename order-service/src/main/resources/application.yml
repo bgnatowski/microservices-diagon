@@ -15,7 +15,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show-sql: true
+    show-sql: false
 
 microservice:
   inventory:
@@ -31,6 +31,8 @@ management:
   health:
     circuitbreakers:
       enabled: true
+    retries:
+      enabled: true
   endpoint:
     web:
       exposure:
@@ -40,17 +42,32 @@ management:
 
 # Resilience4j Properties
 resilience4j:
+  # Circuitbreaker Properties
   circuitbreaker:
     instances:
       inventory:
         registerHealthIndicator: true
-        event-consumer-buffer-size: 10
+        eventConsumerBufferSize: 10
         slidingWindowType: COUNT_BASED
         slidingWindowSize: 5
         failureRateThreshold: 50
         waitDurationInOpenState: 5s
         permittedNumberOfCallsInHalfOpenState: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
-        # Timeout Properties
-        timeout-duration: 3s
+  # Retry Properties
+  retry:
+    instances:
+      inventory:
+        registerHealthIndicator: true
+        maxRetryAttempts: 3
+        waitDuration: 5s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+  # Timeout Properties
+  timelimiter:
+    instances:
+      inventory:
+        registerHealthIndicator: true
+        timeoutDuration: 3s
+
 
