@@ -7,7 +7,7 @@ spring:
   datasource:
     username: 'bgnat'
     password: 'password'
-    url: jdbc:postgresql://localhost:5433/fraud
+    url: jdbc:postgresql://localhost:5432/fraud
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,7 +15,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show-sql: true
+    show-sql: false
 
 eureka:
   client:
