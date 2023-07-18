@@ -4,10 +4,11 @@ server:
 spring:
   application:
     name: order-service
+  # PostgreSQL properties
   datasource:
     username: 'bgnat'
     password: 'password'
-    url: jdbc:postgresql://localhost:5435/orders
+    url: jdbc:postgresql://localhost:5432/orders
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,18 +17,35 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: false
+  # Kafka properties
+  kafka:
+    bootstrap-servers: localhost:9092
+    template:
+      defaultTopic: notificationTopic
+    producer:
+      groupId: notificationId
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: event:pl.bgnat.order.event.OrderPlacedEvent
 
+# Properties - Values
 microservice:
   inventory:
     url:
       get: http://inventory-service/api/v1/inventory
 
+# Eureka Discovery client properties
 eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka:password@localhost:8761/eureka
 
 management:
+  # management Zipkin and Resilience4j
   zipkin:
     tracing:
       endpoint: http://localhost:9411/api/v2/spans

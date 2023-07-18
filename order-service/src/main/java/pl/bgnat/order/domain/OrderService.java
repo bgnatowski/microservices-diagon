@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import pl.bgnat.order.dto.InventoryDto;
 import pl.bgnat.order.dto.OrderRequest;
+import pl.bgnat.order.event.OrderPlacedEvent;
 import pl.bgnat.order.exception.order.OutOfStockException;
 
 import java.util.Arrays;
@@ -63,6 +64,10 @@ public class OrderService {
 			if (!isAllProductsInStock(inventoryResponseArray))
 				throw new OutOfStockException("Some products are out of stock! SkuCodes out of stock: " + productsScuCodeNotInStock);
 			orderRepository.save(order);
+
+			// publish Order Placed Event
+			applicationEventPublisher.publishEvent(new OrderPlacedEvent(this, order.getOrderNumber()));
+
 			return "Order Placed Successfully";
 		});
 	}
