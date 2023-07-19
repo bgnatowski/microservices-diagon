@@ -8,7 +8,7 @@ spring:
   datasource:
     username: 'bgnat'
     password: 'password'
-    url: jdbc:postgresql://localhost:5432/orders
+    url: jdbc:postgresql://localhost:5432/bgnat
   jpa:
     hibernate:
       ddl-auto: update
