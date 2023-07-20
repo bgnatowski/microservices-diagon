@@ -1,6 +1,6 @@
 # ORDER-SERVICE
 server:
-  port: 0
+  port: 0 # moze stad port calkowicie wypierdoliic chuj wie
 #  port: 8080
 spring:
   datasource:
@@ -19,4 +19,4 @@ management:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery-server:8761/eureka
+      defaultZone: http://eureka:password@discovery-server:8761/eureka
