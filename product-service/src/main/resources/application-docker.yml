@@ -1,0 +1,21 @@
+# Product-Service
+spring:
+  data:
+    mongodb:
+      host: mongo
+      port: 277017
+      authentication-database: admin
+      database: mongodb://bgnat:password@product-service:27017/dbname?authSource=admin
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:password@discovery-server:8761/eureka
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411

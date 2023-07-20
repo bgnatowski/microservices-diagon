@@ -11,7 +11,6 @@ import pl.bgnat.customer.dto.FraudCheckResponse;
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
-	@Qualifier("jpa")
 	private final CustomerRepository customerRepository;
 	private final RestTemplate restTemplate;
 	@Value("${microservice.fraud.url}")

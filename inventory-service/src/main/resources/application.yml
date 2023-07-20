@@ -1,3 +1,4 @@
+# INVENTORY-SERVICE
 server:
   port: 0
 
@@ -7,7 +8,7 @@ spring:
   datasource:
     username: 'bgnat'
     password: 'password'
-    url: jdbc:postgresql://localhost:5432/bgnat
+    url: jdbc:postgresql://localhost:5433/inventory-service
   jpa:
     hibernate:
       ddl-auto: create-drop

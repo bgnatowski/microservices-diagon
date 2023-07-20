@@ -1,3 +1,4 @@
+# NOTIFICATION-SERVICE
 spring:
   application:
     name: notification-service

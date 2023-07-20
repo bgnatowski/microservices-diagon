@@ -1,0 +1,17 @@
+# CUSTOMER-SERVICE
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5434/customer-service
+    driverClassName: org.postgresql.Driver
+    username: 'bgnat'
+    password: 'password'
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka

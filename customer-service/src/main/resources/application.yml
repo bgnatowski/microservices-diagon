@@ -1,5 +1,6 @@
+# CUSTOMER-SERVICE
 server:
-  port: 8082
+  port: 8084
 
 spring:
   application:
@@ -7,7 +8,7 @@ spring:
   datasource:
     username: 'bgnat'
     password: 'password'
-    url: jdbc:postgresql://localhost:5432/bgnat
+    url: jdbc:postgresql://localhost:5434/customer-service
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,7 +20,7 @@ spring:
 
 microservice:
   fraud:
-    url: http://localhost:8083/api/v1/fraud-check/{cusomerId}
+    url: http://localhost:8085/api/v1/fraud-check/{cusomerId}
 
 eureka:
   client:
