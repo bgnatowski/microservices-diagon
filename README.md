@@ -11,7 +11,8 @@ e-commerce platform for diagon alley (HarryPotter universum :magic_wand: :sparkl
 * Docker
 * MongoDb
 * PostgreSQL
-* Keycloack
+* Keycloak
 * Kafka
+* resilience4j
 * RabbitMQ
 * Zipkin
