@@ -3,6 +3,14 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### My SQL Host DATA ###
+postgres-customer/
+postgres-order/
+postgres-inventory/
+postgres-fraud/
+mysql_keycloak_data/
+mongo-data/
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
@@ -37,11 +45,3 @@ build/
 ### Mac OS ###
 .DS_Store
 
-### My SQL Host DATA ###
-
-postgres-customer/
-postgres-order/
-postgres-inventory/
-postgres-fraud/
-mysql_keycloak_data/
-mongo-data/
