@@ -37,11 +37,11 @@ build/
 ### Mac OS ###
 .DS_Store
 
-### My SQL Host Data ###
-/mongo-data/
-/mysql_keycloak_data/
-/postgres-customer/
-/postgres-fraud/
-/postgres-inventory/
-/postgres-order/
-/grafana/
+### My SQL Host DATA ###
+
+postgres-customer/
+postgres-order/
+postgres-inventory/
+postgres-fraud/
+mysql_keycloak_data/
+mongo-data/
