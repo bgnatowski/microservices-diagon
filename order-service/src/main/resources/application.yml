@@ -1,14 +1,14 @@
 # ORDER-SERVICE
 server:
-  port: 0
-#  port: 8080
+  port: 8080
 spring:
   application:
     name: order-service
   datasource:
+    url: jdbc:postgresql://localhost:5432/order-service
+    driverClassName: org.postgresql.Driver
     username: 'bgnat'
     password: 'password'
-    url: jdbc:postgresql://localhost:5432/order-service
   jpa:
     hibernate:
       ddl-auto: update

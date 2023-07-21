@@ -27,13 +27,13 @@ public class SecurityConfig {
 								.anyExchange()
 								.authenticated()
 				)
-				.oauth2ResourceServer(oauth2 -> oauth2
-						.jwt(withDefaults()));
+				.oauth2ResourceServer(oAuth2ResourceServerSpec -> {
+					oAuth2ResourceServerSpec.jwt(jwtSpec -> jwtSpec.jwtDecoder(jwtDecoder()));
+				});
 		return serverHttpSecurity.build();
 	}
 
 	@Bean
 	public ReactiveJwtDecoder jwtDecoder() {
-		return ReactiveJwtDecoders.fromIssuerLocation(issuerUri);
-	}
+		return ReactiveJwtDecoders.fromIssuerLocation(issuerUri);}
 }

@@ -1,7 +1,6 @@
 # ORDER-SERVICE
 server:
-  port: 0 # moze stad port calkowicie wypierdoliic chuj wie
-#  port: 8080
+  port: 8080
 spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/order-service
