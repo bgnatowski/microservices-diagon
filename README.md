@@ -7,7 +7,7 @@ e-commerce platform for diagon alley (HarryPotter universum :magic_wand: :sparkl
 * Maven multi modules
 * Spring Boot 3.1
 * Spring Security 6.1
-* SpringC loud 2022.0.3
+* Spring Cloud 2022.0.3
 * Docker
 * MongoDb
 * PostgreSQL
