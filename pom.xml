@@ -11,6 +11,13 @@
   <name>diagon-services</name>
   <url>https://maven.apache.org</url>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.1</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
   <modules>
     <module>customer-service</module>
     <module>fraud-service</module>
@@ -27,18 +34,11 @@
     <java.version>17</java.version>
     <mvn.compiler.source>17</mvn.compiler.source>
     <mvn.compiler.target>17</mvn.compiler.target>
-    <spring.boot.maven.plugin.version>3.1.0</spring.boot.maven.plugin.version>
-    <spring.boot.dependencies.version>3.1.0</spring.boot.dependencies.version>
-    <spring-cloud.version>2022.0.3</spring-cloud.version>
-    <testcontainers.bom.version>1.18.3</testcontainers.bom.version>
+    <spring.boot.maven.plugin.version>3.2.1</spring.boot.maven.plugin.version>
+    <spring.boot.dependencies.version>3.2.1</spring.boot.dependencies.version>
+    <spring-cloud.version>2023.0.0</spring-cloud.version>
   </properties>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.1.0</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
 
   <dependencyManagement>
     <dependencies>
@@ -48,13 +48,6 @@
         <version>${spring.boot.dependencies.version}</version>
         <scope>import</scope>
         <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.testcontainers</groupId>
-        <artifactId>testcontainers-bom</artifactId>
-        <version>${testcontainers.bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -124,7 +117,7 @@
               </platforms>
             </from>
             <to>
-              <image>docker.io/bgnatowski/${project.artifactId}</image>
+              <image>docker.io/bgnatowski00/${project.artifactId}</image>
               <tags>
                 <tag>latest</tag>
               </tags>
@@ -153,7 +146,4 @@
       </plugin>
     </plugins>
   </build>
-
-
-
 </project>

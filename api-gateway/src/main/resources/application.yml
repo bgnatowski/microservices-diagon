@@ -14,21 +14,6 @@ spring:
   cloud:
     gateway:
       routes:
-        # Product Service get Route
-        - id: product-service-get
-          uri: lb://product-service
-          predicates:
-            - Path=/api/v1/product
-        # Product Service post Route
-        - id: product-service-post-add
-          uri: lb://product-service
-          predicates:
-            - Path=/api/v1/product/add
-        # Order Service Route
-        - id: order-service-post
-          uri: lb://order-service
-          predicates:
-            - Path=/api/v1/order/add
         # Discovery Server Route
         - id: discovery-server
           uri: http://eureka:password@${app.eureka-server}:8761
@@ -41,6 +26,36 @@ spring:
           uri: http://eureka:password@${app.eureka-server}:8761
           predicates:
             - Path=/eureka/**
+        ##############################################################################
+        # Customer Service - ogólna obsługa
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/api/v1/customer/**
+#        ##############################################################################
+        # product Service - ogólna obsługa
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/product/**
+        ##############################################################################
+        # order Service - ogólna obsługa
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/order/**
+        ##############################################################################
+        # inventory Service - ogólna obsługa
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/v1/inventory/**
+        ##############################################################################
+        # fraud Service - ogólna obsługa
+        - id: fraud-service
+          uri: lb://fraud-service
+          predicates:
+            - Path=/api/v1/fraud/**
 
 eureka:
   client:

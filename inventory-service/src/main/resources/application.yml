@@ -1,6 +1,6 @@
 # INVENTORY-SERVICE
 server:
-  port: 0
+  port: 8083
 
 spring:
   application:

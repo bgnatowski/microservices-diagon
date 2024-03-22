@@ -2,10 +2,7 @@
 spring:
   data:
     mongodb:
-      host: mongo
-      port: 277017
-      authentication-database: admin
-      database: mongodb://bgnat:password@product-service:27017/dbname?authSource=admin
+      uri: mongodb://bgnat:password@mongo-product:27017/product?authSource=admin
 
 server:
   port: 8080
