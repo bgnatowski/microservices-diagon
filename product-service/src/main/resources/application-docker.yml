@@ -5,7 +5,7 @@ spring:
       uri: mongodb://bgnat:password@mongo-product:27017/product?authSource=admin
 
 server:
-  port: 8080
+  port: 0
 
 eureka:
   client:

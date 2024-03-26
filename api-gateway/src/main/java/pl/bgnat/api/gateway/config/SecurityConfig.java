@@ -28,7 +28,7 @@ public class SecurityConfig {
                                 .pathMatchers("/api/v1/*/status").permitAll()
                                 .anyExchange().authenticated()
                 )
-                .oauth2ResourceServer(spec -> spec.jwt(Customizer.withDefaults()));
+                .oauth2ResourceServer(spec -> spec.jwt(jwtSpec -> jwtSpec.jwtDecoder(jwtDecoder())));
         return serverHttpSecurity.build();
     }
 

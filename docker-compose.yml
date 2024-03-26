@@ -236,6 +236,7 @@ services:
 #  ## Customer-Service Docker Compose Config
 #  customer-service:
 #    container_name: customer-service
+#    pull_policy: always
 #    image: bgnatowski00/customer-service:latest
 #    environment:
 #      - SPRING_PROFILES_ACTIVE=docker
@@ -266,6 +267,7 @@ services:
 #  ## Notification-Service Docker Compose Config
 #  notification-service:
 #    container_name: notification-service
+#    pull_policy: always
 #    image: bgnatowski00/notification-service:latest
 #    environment:
 #      - SPRING_PROFILES_ACTIVE=docker

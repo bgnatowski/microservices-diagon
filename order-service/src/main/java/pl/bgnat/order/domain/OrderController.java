@@ -26,8 +26,8 @@ public class OrderController {
 	private int port;
 	private final OrderService orderService;
 
-	// http://localhost:8083/api/v1/inventory
-	// http://localhost:8181/api/v1/inventory
+	// http://localhost:8083/api/v1/order
+	// http://localhost:8181/api/v1/order
 	@PostMapping
 	@ResponseStatus(CREATED)
 	@CircuitBreaker(name = "inventory", fallbackMethod = "fallbackMethod") //name is the same key as in properties

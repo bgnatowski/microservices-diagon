@@ -1,12 +1,12 @@
 # NOTIFICATION-SERVICE
 spring:
   kafka:
-    bootstrapServers: broker:29092
+    bootstrap-servers: broker:29092
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery-server:8761/eureka
+      defaultZone: http://eureka:password@discovery-server:8761/eureka
 
 management:
   zipkin:

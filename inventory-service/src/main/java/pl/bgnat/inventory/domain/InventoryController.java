@@ -18,8 +18,10 @@ public class InventoryController {
 	private final InventoryService inventoryService;
 
 
-	// http://localhost:8083/api/v1/inventory/skuCode=iphone-13&skuCode=iphone13-red
-	// http://localhost:8181/api/v1/inventory/skuCode=iphone-13&skuCode=iphone13-red
+	// http://localhost:8083/api/v1/inventory/iphone_13,skuCode=iphone13_red
+	// http://localhost:8181/api/v1/inventory/iphone_13,skuCode=iphone13_red
+	// http://localhost:8083/api/v1/inventory?skuCode=iphone_13&skuCode=iphone13_red
+	// http://localhost:8181/api/v1/inventory?skuCode=iphone_13&skuCode=iphone13_red
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<InventoryDto>> isInStock(@RequestParam("skuCode") List<String> skuCodes){

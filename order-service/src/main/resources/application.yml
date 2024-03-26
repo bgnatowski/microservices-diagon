@@ -40,6 +40,8 @@ microservice:
 
 # Eureka Discovery client properties
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://eureka:password@localhost:8761/eureka
@@ -81,8 +83,8 @@ resilience4j:
   retry:
     instances:
       inventory:
-        registerHealthIndicator: true
-        maxRetryAttempts: 3
+        max-attempts: 3
+#        registerHealthIndicator: true
         waitDuration: 5s
         enableExponentialBackoff: true
         exponentialBackoffMultiplier: 2
@@ -90,7 +92,7 @@ resilience4j:
   timelimiter:
     instances:
       inventory:
-        registerHealthIndicator: true
+#        registerHealthIndicator: true
         timeoutDuration: 3s
 
 

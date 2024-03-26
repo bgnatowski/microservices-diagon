@@ -23,6 +23,8 @@ microservice:
     url: http://localhost:8085/api/v1/fraud/{cusomerId}
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://eureka:password@localhost:8761/eureka

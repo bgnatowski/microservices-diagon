@@ -8,7 +8,6 @@ public class OrderLineItemsMapper implements Function<OrderLineItemsDto, OrderLi
 	@Override
 	public OrderLineItems apply(OrderLineItemsDto orderLineItemsDto) {
 		return OrderLineItems.builder()
-				.id(orderLineItemsDto.id())
 				.price(orderLineItemsDto.price())
 				.quantity(orderLineItemsDto.quantity())
 				.skuCode(orderLineItemsDto.skuCode())

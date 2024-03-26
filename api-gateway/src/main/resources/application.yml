@@ -58,6 +58,8 @@ spring:
             - Path=/api/v1/fraud/**
 
 eureka:
+#  instance:
+#    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://eureka:password@localhost:8761/eureka

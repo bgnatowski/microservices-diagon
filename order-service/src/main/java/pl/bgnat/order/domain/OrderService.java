@@ -86,7 +86,7 @@ public class OrderService {
 
 	private InventoryDto[] callInventoryAndGetDtosBySkuCode(List<String> skuCodes) {
 		InventoryDto[] inventoryResponseArray = webClientBuilder.build().get()
-				.uri("http://inventory-service/api/v1/inventory",
+				.uri(inventoryGetUrl,
 						uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
 				.retrieve()
 				.bodyToMono(InventoryDto[].class)

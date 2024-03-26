@@ -1,6 +1,8 @@
 package pl.bgnat.order.dto;
 
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
