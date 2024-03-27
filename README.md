@@ -1,6 +1,6 @@
 
 # Project for learning microservice architecture.
-e-commerce platform for diagon alley (HarryPotter universum :magic_wand: :sparkler:)
+e-commerce platform (for educational purposes/in progress)
 ## Technologies:
 * Java 17
 * Maven multi modules
@@ -51,12 +51,12 @@ To check service you can do:
 ## Postman Authorization
 For secured endpoint locally:
 
-![locally](https://github.com/bgnatowski/microservices-diagon/img/security_local.png)
+![locally](https://github.com/bgnatowski/microservices-diagon/blob/main/img/security_local.png)
 (regenerate client-secret in keycloak admin panel)
 
 For secured endpoint docker (postman Authorization):
 
-![docker](https://github.com/bgnatowski/microservices-diagon/img/security_docker.png)
+![docker](https://github.com/bgnatowski/microservices-diagon/blob/main/img/security_docker.png)
 (regenerate client-secret in keycloak admin panel)
 
 ## Run locally
