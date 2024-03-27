@@ -116,6 +116,7 @@ services:
       DB_PASSWORD: password
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HTTP_PORT: 8080
     ports:
       - "8080:8080"
     volumes:
@@ -159,126 +160,126 @@ services:
       - "9411:9411"
     networks:
       - microservices-network
-#
-#  ## Eureka Server 8761 with gateway on 8181
-#  discovery-server:
-#    image: bgnatowski00/discovery-server:latest
-#    container_name: discovery-server
-#    pull_policy: always
-#    ports:
-#      - "8761:8761"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - zipkin
-#    networks:
-#      - microservices-network
-#
-#  ##
-#  api-gateway:
-#    image: bgnatowski00/api-gateway:latest
-#    container_name: api-gateway
-#    pull_policy: always
-#    ports:
-#      - "8181:8080"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
-#    depends_on:
-#      - zipkin
-#      - discovery-server
-#      - keycloak
-#    networks:
-#      - microservices-network
-### Product-Service Docker compose
-#  product-service:
-#    container_name: product-service
-#    image: bgnatowski00/product-service:latest
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - mongo-product
-#      - discovery-server
-#      - api-gateway
-#    networks:
-#      - microservices-network
-#  ## Order-Service Docker Compose Config
-#  order-service:
-#    container_name: order-service
-#    image: bgnatowski00/order-service:latest
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-order:5432/order-service
-#    depends_on:
-#      - postgres-order
-#      - broker
-#      - zipkin
-#      - discovery-server
-#      - api-gateway
-#    restart: on-failure
-#    networks:
-#      - microservices-network
-#  ## Inventory-Service Docker Compose Config
-#  inventory-service:
-#    container_name: inventory-service
-#    image: bgnatowski00/inventory-service:latest
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-inventory:5433/inventory-service
-#    depends_on:
-#      - postgres-inventory
-#      - discovery-server
-#      - api-gateway
-#    restart: on-failure
-#    networks:
-#      - microservices-network
-#
-#  ## Customer-Service Docker Compose Config
-#  customer-service:
-#    container_name: customer-service
-#    pull_policy: always
-#    image: bgnatowski00/customer-service:latest
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-customer:5434/customer-service
-#    depends_on:
-#      - postgres-customer
-#      - discovery-server
-#      - api-gateway
-#    restart: on-failure
-#    networks:
-#      - microservices-network
-#
-#  ## Fraud-Service Docker Compose Config
-#  fraud-service:
-#    container_name: fraud-service
-#    image: bgnatowski00/fraud-service:latest
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-fraud:5435/fraud-service
-#    depends_on:
-#      - postgres-fraud
-#      - discovery-server
-#      - api-gateway
-#    restart: on-failure
-#    networks:
-#      - microservices-network
-#
-#  ## Notification-Service Docker Compose Config
-#  notification-service:
-#    container_name: notification-service
-#    pull_policy: always
-#    image: bgnatowski00/notification-service:latest
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - zipkin
-#      - broker
-#      - discovery-server
-#      - api-gateway
-#    restart: on-failure
-#    networks:
-#      - microservices-network
+
+  ## Eureka Server 8761 with gateway on 8181
+  discovery-server:
+    image: bgnatowski00/discovery-server:latest
+    container_name: discovery-server
+    pull_policy: always
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - zipkin
+    networks:
+      - microservices-network
+
+  ##
+  api-gateway:
+    image: bgnatowski00/api-gateway:latest
+    container_name: api-gateway
+    pull_policy: always
+    ports:
+      - "8181:8080"
+    expose:
+      - "8181"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=TRACE
+    depends_on:
+      - zipkin
+      - discovery-server
+      - keycloak
+    networks:
+      - microservices-network
+## Product-Service Docker compose
+  product-service:
+    container_name: product-service
+    image: bgnatowski00/product-service:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongo-product
+      - discovery-server
+      - api-gateway
+    networks:
+      - microservices-network
+  ## Order-Service Docker Compose Config
+  order-service:
+    container_name: order-service
+    image: bgnatowski00/order-service:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-order:5432/order-service
+    depends_on:
+      - postgres-order
+      - broker
+      - zipkin
+      - discovery-server
+      - api-gateway
+    restart: on-failure
+    networks:
+      - microservices-network
+  ## Inventory-Service Docker Compose Config
+  inventory-service:
+    container_name: inventory-service
+    image: bgnatowski00/inventory-service:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-inventory:5433/inventory-service
+    depends_on:
+      - postgres-inventory
+      - discovery-server
+      - api-gateway
+    restart: on-failure
+    networks:
+      - microservices-network
+
+  ## Customer-Service Docker Compose Config
+  customer-service:
+    container_name: customer-service
+    image: bgnatowski00/customer-service:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-customer:5434/customer-service
+    depends_on:
+      - postgres-customer
+      - discovery-server
+      - api-gateway
+    restart: on-failure
+    networks:
+      - microservices-network
+
+  ## Fraud-Service Docker Compose Config
+  fraud-service:
+    container_name: fraud-service
+    image: bgnatowski00/fraud-service:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-fraud:5435/fraud-service
+    depends_on:
+      - postgres-fraud
+      - discovery-server
+      - api-gateway
+    restart: on-failure
+    networks:
+      - microservices-network
+
+  ## Notification-Service Docker Compose Config
+  notification-service:
+    container_name: notification-service
+    image: bgnatowski00/notification-service:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - zipkin
+      - broker
+      - discovery-server
+      - api-gateway
+    restart: on-failure
+    networks:
+      - microservices-network
 
 networks:
   microservices-network:
